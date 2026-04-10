@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GCP Exam Prep - Infrastructure Foundation</title>
+    <style>
+        :root {
+            --primary: #4285F4;
+            --bg: #f8f9fa;
+            --card-bg: #ffffff;
+            --text: #202124;
+            --tag-bg: #e8f0fe;
+            --tag-text: #1967d2;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        header {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .filters {
+            margin-bottom: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+        .tag-btn {
+            background-color: var(--tag-bg);
+            color: var(--tag-text);
+            border: none;
+            padding: 5px 12px;
+            border-radius: 16px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: all 0.2s;
+        }
+        .tag-btn:hover, .tag-btn.active {
+            background-color: var(--primary);
+            color: white;
+        }
+        .question-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+            margin-bottom: 15px;
+            overflow: hidden;
+            transition: box-shadow 0.3s;
+        }
+        .question-card:hover {
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .question-header {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+        }
+        .tags-inline {
+            margin-top: 5px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+        .tag-small {
+            font-size: 0.75em;
+            background: #f1f3f4;
+            padding: 2px 10px;
+            border-radius: 12px;
+            color: #5f6368;
+            cursor: pointer;
+        }
+        .tag-small:hover {
+            background: var(--tag-bg);
+            color: var(--tag-text);
+        }
+        .answer-content {
+            padding: 0 20px 20px 20px;
+            display: none;
+            border-top: 1px solid #eee;
+            background: #fafafa;
+        }
+        .answer-content.show {
+            display: block;
+        }
+        .refs {
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 1px dashed #ccc;
+            font-size: 0.9em;
+        }
+        .refs a {
+            color: var(--primary);
+            text-decoration: none;
+            margin-right: 15px;
+            display: inline-block;
+        }
+        .refs a:hover {
+            text-decoration: underline;
+        }
+        .reset-btn {
+            background: #5f6368;
+            color: white;
+            border: none;
+            padding: 5px 12px;
+            border-radius: 16px;
+            cursor: pointer;
+            font-size: 0.9em;
+        }
+        .question-text {
+            flex: 1;
+        }
+        .arrow {
+            margin-left: 10px;
+            transition: transform 0.2s;
+        }
+        .show + .arrow {
+            transform: rotate(180deg);
+        }
+        a.internal-link {
+            color: var(--primary);
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        .main-nav {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .main-nav a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+        .main-nav a:hover {
+            background-color: var(--tag-bg);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>GCP Exam Prep</h1>
+            <p>Infrastructure Foundation</p>
+            <nav class="main-nav">
+                <a href="index.html">Questions</a>
+                <a href="links.html">Links</a>
+            </nav>
+        </header>
+
+        <div class="filters" id="tag-filters">
+            <button class="reset-btn" onclick="filterByTag(null)">All Questions</button>
+        </div>
+
+        <div id="questions-list"></div>
+    </div>
+
+    <script>
+        const questions = [
+  {
+    "id": "",
+    "question": "How do I use Google Cloud?",
+    "answer": "GC console (i.e. the web interface), GC Shell (aka Cloud Shell) and gcloud CLI, REST API, and Cloud Mobile app.",
+    "refs": [],
+    "tags": [
+      "general"
+    ]
+  },
+  {
+    "id": "",
+    "question": "What's the difference between Cloud Shell and gcloud CLI?",
+    "answer": "Cloud Shell refers to a shell environment (i.e. a temporary VM) accessible via your web browser that comes preinstalled with GC CLI and other utilities like a built-in code editor. gcloud CLI is a command-line tool that lets you do administrative GC stuff, either directly through the terminal or via executing gcloud CLI commands in scripts.",
+    "refs": [
+      "https://docs.cloud.google.com/shell/docs",
+      "https://docs.cloud.google.com/sdk/gcloud"
+    ],
+    "tags": [
+      "cloud-shell",
+      "gcloud-cli",
+      "def"
+    ]
+  },
+  {
+    "id": "",
+    "question": "If Cloud Shell is a temporarily-provisioned environment, can any data/files persist between sessions?",
+    "answer": "Yes, up to 5GB of free persistent disk storage is available via the $HOME directory. The directory is deleted if you don't access Cloud Shell for 120 days.",
+    "refs": [
+      "https://docs.cloud.google.com/shell/docs/how-cloud-shell-works#persistent_disk_storage"
+    ],
+    "tags": [
+      "cloud-shell"
+    ]
+  },
+  {
+    "id": "google-cloud-sdk-def",
+    "question": "What is the Google Cloud SDK?",
+    "answer": "A suite of libraries and tools for managing cloud resources (via gcloud CLI), integrate APIs with programs written in various programming languages using [Cloud Client Libraries](\"#cloud-client-libs-def\"), building/testing/deploying applications with frameworks and tools like Spring or Kubernetes, as well as [emulators](#emulator-def).",
+    "refs": [
+      "https://docs.cloud.google.com/sdk"
+    ],
+    "tags": [
+      "google-cloud-sdk",
+      "cloud-client-libraries",
+      "gcloud-cli",
+      "emulator",
+      "def"
+    ]
+  },
+  {
+    "id": "cloud-client-libs-def",
+    "question": "What are Cloud Client Libraries?",
+    "answer": "Programming-language-specific libraries that give you a way of accessing google services from your application code.",
+    "refs": [
+      "https://docs.cloud.google.com/apis/docs/cloud-client-libraries"
+    ],
+    "tags": [
+      "cloud-client-libraries",
+      "def"
+    ]
+  },
+  {
+    "id": "emulator-def",
+    "question": "What is an emulator?",
+    "answer": "'Local' installations of GC services that simulate the remotely-hosted ones. Helps save costs and iterate faster during development.",
+    "refs": [
+      "https://docs.cloud.google.com/sdk/docs/overview#emulators"
+    ],
+    "tags": [
+      "emulator",
+      "def"
+    ]
+  },
+  {
+    "id": "firestore-def",
+    "question": "What is Cloud Firestore?",
+    "answer": "A cloud-hosted NoSQL database that uses data synchronization to update data on client devices. Basically Firebase but GCP's version.",
+    "refs": [
+      "https://firebase.google.com/docs/firestore"
+    ],
+    "tags": [
+      "firestore",
+      "emulator",
+      "def",
+      "service"
+    ]
+  },
+  {
+    "id": "pubsub-use-cases",
+    "question": "What are some use cases for the Pub/Sub service?",
+    "answer": "Forwarding user interation or server _events_ to Pub/Sub, so that a stream processing tool such as [Dataflow](\"#dataflow-def\") can deliver these events to databases, allow for real-time processing of events for multiple applications, distributing change events across database clones, distributing tasks to multiple workers for parallel processing, data streaming, refreshing distrbuted caches, load balancing tasks across multiple subscribers for reliability.",
+    "refs": [
+      "https://docs.cloud.google.com/pubsub/docs/overview"
+    ],
+    "tags": [
+      "pubsub",
+      "emulator",
+      "use-cases",
+      "service"
+    ]
+  },
+  {
+    "id": "datastore-use-cases",
+    "question": "What are some use cases for the Datastore service?",
+    "answer": "In general, for applications that rely on highly available data at scale. Examples are product catalogs that provide real-time inventory and product details, user profiles enabling customized experiences based on past activity or preferences, or transactions based on ACID properties like transferring funds between bank accounts.",
+    "refs": [
+      "https://docs.cloud.google.com/datastore/docs/concepts/overview#what_its_good_for"
+    ],
+    "tags": [
+      "datastore",
+      "emulator",
+      "use-cases",
+      "service"
+    ]
+  },
+  {
+    "id": "dataflow-def",
+    "question": "What is Dataflow?",
+    "answer": "A GC service that provides unified stream and batch data processing at scale. You can use it to create data pipelines that read from one or more sources, transform the data, then write the data to a destination (i.e. for ETL workflows). DF is a fully-managed service, so it allocates and de-provisions all the compute resources it needs (i.e. VMs) to complete the task.",
+    "refs": [
+      "https://docs.cloud.google.com/dataflow/docs/overview"
+    ],
+    "tags": [
+      "datastore",
+      "emulator",
+      "use-cases",
+      "service",
+      "fully-managed"
+    ]
+  }
+];
+        const questionsList = document.getElementById('questions-list');
+        const tagFilters = document.getElementById('tag-filters');
+        let currentTag = null;
+        let currentId = null;
+
+        function render() {
+            questionsList.innerHTML = '';
+            
+            const allTags = new Set();
+            questions.forEach(q => q.tags.forEach(t => allTags.add(t)));
+            
+            if (tagFilters.children.length <= 1) {
+                Array.from(allTags).sort().forEach(tag => {
+                    const btn = document.createElement('button');
+                    btn.className = 'tag-btn';
+                    btn.textContent = tag;
+                    btn.onclick = () => filterByTag(tag);
+                    tagFilters.appendChild(btn);
+                });
+            }
+
+            Array.from(tagFilters.querySelectorAll('.tag-btn')).forEach(btn => {
+                btn.classList.toggle('active', btn.textContent === currentTag);
+            });
+
+            questions.forEach(q => {
+                let visible = true;
+                if (currentId) {
+                    visible = q.id === currentId;
+                } else if (currentTag) {
+                    visible = q.tags.includes(currentTag);
+                }
+
+                if (!visible) return;
+
+                const card = document.createElement('div');
+                card.className = 'question-card';
+                if (q.id) card.id = 'q-' + q.id;
+
+                const header = document.createElement('div');
+                header.className = 'question-header';
+                
+                const qText = document.createElement('div');
+                qText.className = 'question-text';
+                qText.innerHTML = `<div>${q.question}</div>`;
+                
+                const tagsDiv = document.createElement('div');
+                tagsDiv.className = 'tags-inline';
+                q.tags.forEach(t => {
+                    const span = document.createElement('span');
+                    span.className = 'tag-small';
+                    span.textContent = t;
+                    span.onclick = (e) => {
+                        e.stopPropagation();
+                        filterByTag(t);
+                    };
+                    tagsDiv.appendChild(span);
+                });
+                qText.appendChild(tagsDiv);
+                
+                header.appendChild(qText);
+                const arrow = document.createElement('span');
+                arrow.className = 'arrow';
+                arrow.textContent = '▼';
+                header.appendChild(arrow);
+                
+                header.onclick = () => {
+                    const content = card.querySelector('.answer-content');
+                    content.classList.toggle('show');
+                };
+
+                const answer = document.createElement('div');
+                answer.className = 'answer-content';
+                if (currentId === q.id) answer.classList.add('show');
+                
+                let processedAnswer = q.answer;
+                // Match [Text](#id) or [Text]("#id")
+                processedAnswer = processedAnswer.replace(/\[([^\]]+)\]\(["']?#([^"']+)["']?\)/g, (match, text, id) => {
+                    return `<a class="internal-link" onclick="event.preventDefault(); filterById('${id}')">${text}</a>`;
+                });
+                // Match bare #id that aren't already part of a link
+                processedAnswer = processedAnswer.replace(/(^|\s)#([a-zA-Z0-9_-]+)/g, (match, p1, id) => {
+                    return `${p1}<a class="internal-link" onclick="event.preventDefault(); filterById('${id}')">#${id}</a>`;
+                });
+
+                answer.innerHTML = '<p>' + processedAnswer + '</p>';
+
+                if (q.refs && q.refs.length > 0) {
+                    const refsDiv = document.createElement('div');
+                    refsDiv.className = 'refs';
+                    refsDiv.innerHTML = '<strong>References:</strong><br>';
+                    q.refs.forEach(ref => {
+                        const a = document.createElement('a');
+                        a.href = ref;
+                        a.target = '_blank';
+                        a.textContent = ref;
+                        refsDiv.appendChild(a);
+                    });
+                    answer.appendChild(refsDiv);
+                }
+
+                card.appendChild(header);
+                card.appendChild(answer);
+                questionsList.appendChild(card);
+            });
+        }
+
+        function filterByTag(tag) {
+            currentTag = tag;
+            currentId = null;
+            render();
+            window.scrollTo(0,0);
+        }
+
+        function filterById(id) {
+            currentId = id;
+            currentTag = null;
+            render();
+            window.scrollTo(0,0);
+        }
+
+        render();
+    </script>
+</body>
+</html>

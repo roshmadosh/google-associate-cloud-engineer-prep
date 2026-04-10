@@ -1,0 +1,26 @@
+{
+  "name": "gcp-cert-prep",
+  "version": "1.0.0",
+  "description": "- CLEFR for exam fee reimbursement: https://pefmbp.com/education-training/tuition-reimbursement/ - Learning path: https://partner.skills.google/paths/69?utm_source=cgc&utm_medium=website&utm_campaign=evergreen&utm_content=partnertrainingace",
+  "main": "index.js",
+  "scripts": {
+    "build": "node generate.js",
+    "generate": "node generate.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hiroshi-nobuoka2-dolbas/gcp-cert-prep.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Hiroshi-nobuoka2-dolbas/gcp-cert-prep/issues"
+  },
+  "homepage": "https://github.com/Hiroshi-nobuoka2-dolbas/gcp-cert-prep#readme",
+  "dependencies": {
+    "js-yaml": "^4.1.1",
+    "markdown-it": "^14.1.1"
+  }
+}
