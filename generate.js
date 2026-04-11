@@ -50,7 +50,7 @@ function parseMD(content) {
   }).filter(q => q.question || q.answer);
 }
 
-const inputPath = path.join(__dirname, 'ESSENTIAL_GC_INFRA_FOUNDATION.md');
+const inputPath = path.join(__dirname, 'questions.md');
 if (!fs.existsSync(inputPath)) {
   console.error('Input file not found:', inputPath);
   process.exit(1);

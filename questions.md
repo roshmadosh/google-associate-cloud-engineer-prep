@@ -1,5 +1,4 @@
-A list of question-answer pairs related to the topics covered in "Essential Google Cloud Infrastructure: Foundation" course.  
-
+Template
 ---
 id:  
 question:   
@@ -10,7 +9,7 @@ tags: []
 
 ---
 question: "How do I use Google Cloud?"  
-answer: "GC console (i.e. the web interface), GC Shell (aka Cloud Shell) and gcloud CLI, REST API, and Cloud Mobile app."  
+answer: "GC console (i.e. the web interface), GC Shell (aka Cloud Shell) and gcloud CLI, REST API, and GC Mobile app."  
 tags: [ "general" ]  
 ---
 

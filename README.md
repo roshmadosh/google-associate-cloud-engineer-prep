@@ -10,7 +10,7 @@ The main page lists question-answer pairs. Each question has tags that you can c
 
 ### 1. Update Content
 
-**Flashcards/Questions**: Edit `ESSENTIAL_GC_INFRA_FOUNDATION.md`. Follow the existing format with `---` separators and the following keys:  
+**Flashcards/Questions**: Edit `questions.md`. Follow the existing format with `---` separators and the following keys:  
 - `id` for cross-referencing questions (optional)
 - `question`
 - `answer`
