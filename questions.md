@@ -84,4 +84,26 @@ refs: [ "https://docs.cloud.google.com/dataflow/docs/overview" ]
 tags: [ "datastore", "emulator", "use-cases", "service", "fully-managed" ]  
 ---  
 
+---
+id:  
+question: "What are the four 'layers' of the resource hierarchy, starting from the root parent?"
+answer: "Organization, folder, project, resource."
+refs: [ "https://docs.cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy" ]  
+tags: [ "resource-hierarchy" ]  
+---
 
+---
+id:  
+question: "What are the benefits of having an organization resource?"
+answer: "All project resources won't belong to the creator of the resource but to the organization, so they'll be retained even when the creator's user account is deleted. There's also easier oversight for all the resources that belong to an organization, preventing 'shadow projects' or 'rogue admins'. Project and folder resources inherit roles granted to the organization resource, making it possible to assign roles to all the resources in an organization at once."
+refs: [ "https://docs.cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy#benefits_of_the_organization_resource" ]  
+tags: [ "organization-resource" ]  
+---
+
+---
+id:  
+question: "What two things can you sign up for to have an associated organization resource created automatically?" 
+answer: "Google Workspace or Cloud Identity." 
+refs: []  
+tags: [ "organization-resource" ]  
+---
