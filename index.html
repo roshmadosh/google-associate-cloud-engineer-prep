@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GCP Exam Prep - Infrastructure Foundation</title>
+    <title>Google Associate Cloud Engineer Exam Prep</title>
     <style>
         :root {
             --primary: #4285F4;
@@ -174,8 +174,7 @@
 <body>
     <div class="container">
         <header>
-            <h1>GCP Exam Prep</h1>
-            <p>Infrastructure Foundation</p>
+	    <h1>Google Associate Cloud Engineer Exam Prep</h1>
             <nav class="main-nav">
                 <a href="index.html">Questions</a>
                 <a href="links.html">Links</a>
@@ -318,16 +317,13 @@
       "https://docs.cloud.google.com/dataflow/docs/overview"
     ],
     "tags": [
-      "datastore",
-      "emulator",
-      "use-cases",
-      "service",
-      "fully-managed"
+      "dataflow",
+      "service"
     ]
   },
   {
     "id": "",
-    "question": "What are the four 'layers' of the resource hierarchy, starting from the root parent?",
+    "question": "What are the four 'layers' of the resource hierarchy, starting from the root resource?",
     "answer": "Organization, folder, project, resource.",
     "refs": [
       "https://docs.cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy"
@@ -339,7 +335,7 @@
   {
     "id": "",
     "question": "What are the benefits of having an organization resource?",
-    "answer": "All project resources won't belong to the creator of the resource but to the organization, so they'll be retained even when if the creator's user account is deleted. There's also easier oversight for all the resources that belong to an organization, preventing 'shadow projects' or 'rogue admins'. Project and folder resources inherit roles granted to the organization resource, making it easier to assign a role to all the resources in an organization.",
+    "answer": "All project resources won't belong to the creator of the resource but to the organization, so they'll be retained even when the creator's user account is deleted. There's also easier oversight for all the resources that belong to an organization, preventing 'shadow projects' or 'rogue admins'. Project and folder resources inherit roles granted to the organization resource, making it possible to assign roles to all the resources in an organization at once.",
     "refs": [
       "https://docs.cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy#benefits_of_the_organization_resource"
     ],
