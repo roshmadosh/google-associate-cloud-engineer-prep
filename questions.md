@@ -81,12 +81,12 @@ id: "dataflow-def"
 question: "What is Dataflow?"
 answer: "A GC service that provides unified stream and batch data processing at scale. You can use it to create data pipelines that read from one or more sources, transform the data, then write the data to a destination (i.e. for ETL workflows). DF is a fully-managed service, so it allocates and de-provisions all the compute resources it needs (i.e. VMs) to complete the task."      
 refs: [ "https://docs.cloud.google.com/dataflow/docs/overview" ]    
-tags: [ "datastore", "emulator", "use-cases", "service", "fully-managed" ]  
+tags: [ "dataflow", "service" ]  
 ---  
 
 ---
 id:  
-question: "What are the four 'layers' of the resource hierarchy, starting from the root parent?"
+question: "What are the four 'layers' of the resource hierarchy, starting from the root resource?"
 answer: "Organization, folder, project, resource."
 refs: [ "https://docs.cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy" ]  
 tags: [ "resource-hierarchy" ]  
