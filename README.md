@@ -1,10 +1,10 @@
 # Prep for Google Associate Cloud Engineer Certification  
 
-## Usage
+## How to Use
 
-Clone the repo, then just open `index.html` in a browser.  
+Navigate to https://roshmadosh.github.io/google-associate-cloud-engineer-prep/ to view the static site.  
 
-The main page lists question-answer pairs. Each question has tags that you can click on to filter by that tag. References to answers will be available in the answers. Answers may reference other question-answer pairs, and clicking on the link should take you to it.     
+You can also open `index.html` in a browser from a local installation of the repo.  
 
 ## How to Update
 
