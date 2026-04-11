@@ -151,6 +151,24 @@
         .main-nav a:hover {
             background-color: var(--tag-bg);
         }
+        .search-container {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        #tag-search {
+            width: 100%;
+            max-width: 400px;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        #tag-search:focus {
+            border-color: var(--primary);
+        }
     </style>
 </head>
 <body>
@@ -164,6 +182,10 @@
             </nav>
         </header>
 
+        <div class="search-container">
+            <input type="text" id="tag-search" placeholder="Search tags..." oninput="handleSearch(this.value)">
+        </div>
+
         <div class="filters" id="tag-filters">
             <button class="reset-btn" onclick="filterByTag(null)">All Questions</button>
         </div>
@@ -176,7 +198,7 @@
   {
     "id": "",
     "question": "How do I use Google Cloud?",
-    "answer": "GC console (i.e. the web interface), GC Shell (aka Cloud Shell) and gcloud CLI, REST API, and Cloud Mobile app.",
+    "answer": "GC console (i.e. the web interface), GC Shell (aka Cloud Shell) and gcloud CLI, REST API, and GC Mobile app.",
     "refs": [],
     "tags": [
       "general"
@@ -302,12 +324,45 @@
       "service",
       "fully-managed"
     ]
+  },
+  {
+    "id": "",
+    "question": "What are the four 'layers' of the resource hierarchy, starting from the root parent?",
+    "answer": "Organization, folder, project, resource.",
+    "refs": [
+      "https://docs.cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy"
+    ],
+    "tags": [
+      "resource-hierarchy"
+    ]
+  },
+  {
+    "id": "",
+    "question": "What are the benefits of having an organization resource?",
+    "answer": "All project resources won't belong to the creator of the resource but to the organization, so they'll be retained even when if the creator's user account is deleted. There's also easier oversight for all the resources that belong to an organization, preventing 'shadow projects' or 'rogue admins'. Project and folder resources inherit roles granted to the organization resource, making it easier to assign a role to all the resources in an organization.",
+    "refs": [
+      "https://docs.cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy#benefits_of_the_organization_resource"
+    ],
+    "tags": [
+      "organization-resource"
+    ]
+  },
+  {
+    "id": "",
+    "question": "What two things can you sign up for to have an associated organization resource created automatically?",
+    "answer": "Google Workspace or Cloud Identity.",
+    "refs": [],
+    "tags": [
+      "organization-resource"
+    ]
   }
 ];
         const questionsList = document.getElementById('questions-list');
         const tagFilters = document.getElementById('tag-filters');
+        const tagSearch = document.getElementById('tag-search');
         let currentTag = null;
         let currentId = null;
+        let searchTerm = '';
 
         function render() {
             questionsList.innerHTML = '';
@@ -315,6 +370,8 @@
             const allTags = new Set();
             questions.forEach(q => q.tags.forEach(t => allTags.add(t)));
             
+            // Only rebuild tag buttons if they haven't been built yet or if we need to filter buttons too
+            // For now, let's keep all buttons and just highlight the active one
             if (tagFilters.children.length <= 1) {
                 Array.from(allTags).sort().forEach(tag => {
                     const btn = document.createElement('button');
@@ -326,7 +383,14 @@
             }
 
             Array.from(tagFilters.querySelectorAll('.tag-btn')).forEach(btn => {
-                btn.classList.toggle('active', btn.textContent === currentTag);
+                const tag = btn.textContent;
+                btn.classList.toggle('active', tag === currentTag);
+                
+                // Optionally hide buttons that don't match search
+                if (tag && tag !== 'All Questions') {
+                   const matchesSearch = tag.toLowerCase().includes(searchTerm.toLowerCase());
+                   btn.style.display = matchesSearch || !searchTerm ? 'inline-block' : 'none';
+                }
             });
 
             questions.forEach(q => {
@@ -335,6 +399,8 @@
                     visible = q.id === currentId;
                 } else if (currentTag) {
                     visible = q.tags.includes(currentTag);
+                } else if (searchTerm) {
+                    visible = q.tags.some(t => t.toLowerCase().includes(searchTerm.toLowerCase()));
                 }
 
                 if (!visible) return;
@@ -414,6 +480,8 @@
         function filterByTag(tag) {
             currentTag = tag;
             currentId = null;
+            searchTerm = '';
+            tagSearch.value = '';
             render();
             window.scrollTo(0,0);
         }
@@ -421,8 +489,17 @@
         function filterById(id) {
             currentId = id;
             currentTag = null;
+            searchTerm = '';
+            tagSearch.value = '';
             render();
             window.scrollTo(0,0);
+        }
+
+        function handleSearch(val) {
+            searchTerm = val;
+            currentTag = null;
+            currentId = null;
+            render();
         }
 
         render();
