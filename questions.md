@@ -1,4 +1,3 @@
-Template
 ---
 id:  
 question:   
@@ -43,7 +42,6 @@ refs: [ "https://docs.cloud.google.com/apis/docs/cloud-client-libraries" ]
 tags: [ "cloud-client-libraries", "def" ]
 ---
 
-
 ---
 id: "emulator-def"
 question: "What is an emulator?"   
@@ -86,7 +84,7 @@ tags: [ "dataflow", "service" ]
 
 ---
 id:  
-question: "What are the four 'layers' of the resource hierarchy, starting from the root resource?"
+question: "What are the four 'layers' of the resource hierarchy, starting from the root?"
 answer: "Organization, folder, project, resource."
 refs: [ "https://docs.cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy" ]  
 tags: [ "resource-hierarchy" ]  
@@ -106,4 +104,28 @@ question: "What two things can you sign up for to have an associated organizatio
 answer: "Google Workspace or Cloud Identity." 
 refs: []  
 tags: [ "organization-resource" ]  
+---
+
+---
+id:  
+question: "What roles would you need on an organization resource to create a resource hierarchy (i.e. a folder, project, or resource in an organization)?"
+answer: "Organization Administrator, Folder Creator, Project Creator." 
+refs: [ "https://docs.cloud.google.com/resource-manager/docs/manage-google-cloud-resources#before-you-begin" ]  
+tags: [ "resource-hierarchy" ]  
+---
+
+---
+id:  
+question: "What's the difference between an organization policy and an IAM policy?" 
+answer: "An organization policy sets constraints on what can be done on a resource, irrespective of users. An IAM policy defines who (principals) can do what (roles) on which resource." 
+refs: [ "https://docs.cloud.google.com/organization-policy/overview" ]  
+tags: [ "organization-policy", "iam" ]  
+---
+
+---
+id: "constraint-def" 
+question: "What is a constraint?"
+answer: "A restriction against one or more Google Cloud services. Constraints are 'applied' to a resource via an organization policy." 
+refs: [ "https://docs.cloud.google.com/organization-policy/overview#constraints" ]  
+tags: [ "constraint", "organization-policy" ]  
 ---
